@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samirup Karmakar - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#3b82f6',
+                            dark: '#60a5fa'
+                        },
+                        secondary: {
+                            light: '#10b981',
+                            dark: '#34d399'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .profile-img {
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        }
+        
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 24px;
+            height: 100%;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        
+        .dark .timeline-item:not(:last-child)::after {
+            background-color: #4b5563;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+        
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+        
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200">
+    <!-- Header/Navigation -->
+    <header class="fixed w-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary-light dark:text-primary-dark">SK</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <button id="theme-toggle" class="p-2 rounded-full focus:outline-none">
+                <i class="fas fa-moon dark:hidden text-gray-700"></i>
+                <i class="fas fa-sun hidden dark:inline text-yellow-300"></i>
+            </button>
+            <button id="mobile-menu-button" class="md:hidden p-2">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-6">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0 animate-fadeIn">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm <span class="text-primary-light dark:text-primary-dark">Samirup Karmakar</span></h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-secondary-light dark:text-secondary-dark">Computer Science Engineering Student</h2>
+                <p class="text-lg mb-8 max-w-lg">I intend to build a career with an organization, with committed and dedicated people, which will help me to explore my potential and attain growth and establishment.</p>
+                <div class="flex space-x-4">
+                    <a href="#contact" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:bg-opacity-90 transition">Contact Me</a>
+                    <a href="#projects" class="px-6 py-3 border border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">View Projects</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center animate-fadeIn delay-200">
+                <div class="w-64 h-64 bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark p-1 rounded-full">
+                    <img src="Samirup.jpg" alt="Samirup Karmakar" class="w-full h-full object-cover rounded-full profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">About <span class="text-primary-light dark:text-primary-dark">Me</span></h2>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 animate-fadeIn">
+                    <h3 class="text-2xl font-semibold mb-4">Personal Information</h3>
+                    <div class="space-y-4">
+                        <p><span class="font-medium">Date of Birth:</span> 25.08.2004</p>
+                        <p><span class="font-medium">Nationality:</span> Indian</p>
+                        <p><span class="font-medium">Gender:</span> Male</p>
+                        <p><span class="font-medium">Languages:</span> English, Bengali, Hindi</p>
+                        <p><span class="font-medium">Marital Status:</span> Single</p>
+                        <p><span class="font-medium">Address:</span> 119, Ramesh Goswami Road, Kanchrapara-743145, 24Pgs(n)</p>
+                        <p><span class="font-medium">Phone:</span> 8777673611</p>
+                        <p><span class="font-medium">Email:</span> reek99karmakar@gmail.com</p>
+                    </div>
+                </div>
+                <div class="md:w-1/2 animate-fadeIn delay-100">
+                    <h3 class="text-2xl font-semibold mb-4">Personality Traits</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary-light dark:text-secondary-dark mt-1 mr-2"></i>
+                            <span>Good Communication skills</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary-light dark:text-secondary-dark mt-1 mr-2"></i>
+                            <span>Analytical ability to think logically and rationally</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary-light dark:text-secondary-dark mt-1 mr-2"></i>
+                            <span>Diligent and Hard Working, especially as a team member</span>
+                        </li>
+                    </ul>
+                    
+                    <h3 class="text-2xl font-semibold mt-8 mb-4">Hobbies</h3>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center">
+                            <i class="fas fa-gamepad mr-2"></i> Playing Games
+                        </span>
+                        <span class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center">
+                            <i class="fas fa-music mr-2"></i> Listening Music
+                        </span>
+                        <span class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center">
+                            <i class="fas fa-film mr-2"></i> Watching Movies
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Academic <span class="text-primary-light dark:text-primary-dark">Qualifications</span></h2>
+            
+            <div class="relative">
+                <!-- Graduation -->
+                <div class="timeline-item mb-12 pl-8 relative animate-fadeIn">
+                    <div class="absolute left-0 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark"></div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
+                            <h3 class="text-xl font-bold">B.Tech in Computer Science & Engineering</h3>
+                            <span class="text-sm bg-primary-light dark:bg-primary-dark text-white px-3 py-1 rounded-full">2022 - 2026</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">Narula Institute of Technology | MAKAUT</p>
+                        <p class="font-medium">CGPA: 7.29 (as of July 3 2025)</p>
+                    </div>
+                </div>
+                
+                <!-- 12th -->
+                <div class="timeline-item mb-12 pl-8 relative animate-fadeIn delay-100">
+                    <div class="absolute left-0 w-4 h-4 rounded-full bg-secondary-light dark:bg-secondary-dark"></div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
+                            <h3 class="text-xl font-bold">All India Senior School Certificate Examination (AISSCE)</h3>
+                            <span class="text-sm bg-secondary-light dark:bg-secondary-dark text-white px-3 py-1 rounded-full">2022</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">Kanchrapara Harnett English Medium School | CBSE</p>
+                        <p class="font-medium">Percentage: 62.8% (Best of 5)</p>
+                    </div>
+                </div>
+                
+                <!-- 10th -->
+                <div class="timeline-item pl-8 relative animate-fadeIn delay-200">
+                    <div class="absolute left-0 w-4 h-4 rounded-full bg-primary-light dark:bg-primary-dark"></div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
+                            <h3 class="text-xl font-bold">All India Secondary School Examination (AISSE)</h3>
+                            <span class="text-sm bg-primary-light dark:bg-primary-dark text-white px-3 py-1 rounded-full">2020</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">Kanchrapara Harnett English Medium School | CBSE</p>
+                        <p class="font-medium">Percentage: 63.8% (Best of 5)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Technical <span class="text-primary-light dark:text-primary-dark">Skills</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Programming Languages -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md animate-fadeIn">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-code mr-2 text-primary-light dark:text-primary-dark"></i>
+                        Programming Languages
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>C</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full skill-bar">
+                                <div class="bg-primary-light dark:bg-primary-dark skill-bar rounded-full" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>SQL</span>
+                                <span>60%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full skill-bar">
+                                <div class="bg-primary-light dark:bg-primary-dark skill-bar rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Java</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full skill-bar">
+                                <div class="bg-primary-light dark:bg-primary-dark skill-bar rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Web Technologies -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md animate-fadeIn delay-100">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-globe mr-2 text-secondary-light dark:text-secondary-dark"></i>
+                        Web Technologies
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>HTML</span>
+                                <span>60%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full skill-bar">
+                                <div class="bg-secondary-light dark:bg-secondary-dark skill-bar rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>CSS</span>
+                                <span>60%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full skill-bar">
+                                <div class="bg-secondary-light dark:bg-secondary-dark skill-bar rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>JavaScript</span>
+                                <span>60%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full skill-bar">
+                                <div class="bg-secondary-light dark:bg-secondary-dark skill-bar rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Database -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md animate-fadeIn delay-200">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-database mr-2 text-primary-light dark:text-primary-dark"></i>
+                        Database
+                    </h3>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span>MySQL</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full skill-bar">
+                            <div class="bg-primary-light dark:bg-primary-dark skill-bar rounded-full" style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certification -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md animate-fadeIn delay-300">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-certificate mr-2 text-secondary-light dark:text-secondary-dark"></i>
+                        Certification
+                    </h3>
+                    <p>Soft Computing Techniques by NPTEL (presented by IIT ISM DHANBAD)</p>
+                </div>
+            </div>
+            
+            <!-- Subjects of Interest -->
+            <div class="mt-12 bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md animate-fadeIn delay-400">
+                <h3 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-book-open mr-2 text-primary-light dark:text-primary-dark"></i>
+                    Subjects of Interest
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-circle text-xs mr-2 text-secondary-light dark:text-secondary-dark"></i>
+                        <span>Data Structure</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-circle text-xs mr-2 text-secondary-light dark:text-secondary-dark"></i>
+                        <span>DBMS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Academic <span class="text-primary-light dark:text-primary-dark">Projects</span></h2>
+            
+            <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md animate-fadeIn">
+                <h3 class="text-2xl font-bold mb-2">Expense Tracker Web App</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">Built an Expense Tracker web app using HTML, CSS, and JavaScript to manage income and expenses with real-time balance updates and local storage.</p>
+                
+                <div class="mb-4">
+                    <span class="font-medium">Project Link:</span>
+                    <a href="https://github.com/Samirup2004Karmakar/Project" target="_blank" class="text-primary-light dark:text-primary-dark hover:underline ml-2">
+                        https://github.com/Samirup2004Karmakar/Project
+                    </a>
+                </div>
+                
+                <div>
+                    <span class="font-medium">Operating System Used:</span>
+                    <span class="ml-2">Windows 11th Generation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Get In <span class="text-primary-light dark:text-primary-dark">Touch</span></h2>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2 animate-fadeIn">
+                    <h3 class="text-2xl font-semibold mb-4">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary-light dark:text-primary-dark mt-1 mr-4 text-xl"></i>
+                            <div>
+                                <h4 class="font-medium">Address</h4>
+                                <p>119, Ramesh Goswami Road, Kanchrapara-743145, 24Pgs(n)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-primary-light dark:text-primary-dark mt-1 mr-4 text-xl"></i>
+                            <div>
+                                <h4 class="font-medium">Email</h4>
+                                <p>reek99karmakar@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-primary-light dark:text-primary-dark mt-1 mr-4 text-xl"></i>
+                            <div>
+                                <h4 class="font-medium">Phone</h4>
+                                <p>8777673611</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-semibold mt-12 mb-4">Connect With Me</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/Samirup2004Karmakar" target="_blank" class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-primary-light hover:text-white dark:hover:bg-primary-dark transition">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=100086563683854" target="_blank" class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-blue-600 hover:text-white transition">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/samirup_karmakar/" target="_blank" class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-pink-600 hover:text-white transition">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/samirup-karmakar-214514291/" target="_blank" class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-blue-500 hover:text-white transition">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 animate-fadeIn delay-100">
+                    <h3 class="text-2xl font-semibold mb-4">Send Me a Message</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block mb-1">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark bg-white dark:bg-gray-700">
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-1">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark bg-white dark:bg-gray-700">
+                        </div>
+                        <div>
+                            <label for="subject" class="block mb-1">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark bg-white dark:bg-gray-700">
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-1">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark bg-white dark:bg-gray-700"></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:bg-opacity-90 transition">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 bg-gray-800 text-gray-300">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Samirup Karmakar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved user preference, if any
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            html.classList.add('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const newTheme = html.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const animateElements = document.querySelectorAll('.animate-fadeIn');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        animateElements.forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
